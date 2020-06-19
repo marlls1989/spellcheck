@@ -12,10 +12,11 @@ with open('en_full.txt', 'r') as f:
         bow[a[0]] = int(a[1])
 
 stop_words = set(stopwords.words("english"))
-spellcheck = NorvigSpell(bow, stopwords=stop_words)
+spellcheck = NorvigSpell(bow)
 
 with open('exemplo.csv', 'r') as f:
     for line in f:
-        text = re.sub(r'[^a-zA-Z]', '', line.strip().lower())
-        results = spellcheck.segment(text)
+        text = re.sub(r'[^a-zA-Z ]', '', line.strip())
+        results = spellcheck.correct_text(text)
         print(results)
+

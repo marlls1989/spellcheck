@@ -41,8 +41,6 @@ class NorvigSpell:
 
     @memo
     def correct(self, word):
-        if word in self.stopwords:
-            return ""
         "Find the best spelling correction for this word."
         # Prefer edit distance 0, then 1, then 2; otherwise default to word itself.
         candidates = (self.known(self.edits0(word)) or
